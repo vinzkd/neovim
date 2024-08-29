@@ -7,9 +7,7 @@
 -- kickstart.nvim and not kitchen-sink.nvim ;)
 
 return {
-  -- NOTE: Yes, you can install new plugins here!
   'mfussenegger/nvim-dap',
-  -- NOTE: And you can specify dependencies as well
   dependencies = {
     -- Creates a beautiful debugger UI
     'rcarriga/nvim-dap-ui',
@@ -48,11 +46,54 @@ return {
   end,
   config = function()
     local dap = require 'dap'
+
+    dap.adapters.gdb = {
+      type = 'executable',
+      command = 'gdb',
+      args = { '--interpreter=dap', '--eval-command', 'set print pretty on' },
+    }
+    dap.configurations.cpp = {
+      {
+        name = 'Launch',
+        type = 'gdb',
+        request = 'launch',
+        program = function()
+          return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+        end,
+        cwd = '${workspaceFolder}',
+        stopAtBeginningOfMainSubprogram = false,
+      },
+      {
+        name = 'Select and attach to process',
+        type = 'gdb',
+        request = 'attach',
+        program = function()
+          return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+        end,
+        pid = function()
+          local name = vim.fn.input 'Executable name (filter): '
+          return require('dap.utils').pick_process { filter = name }
+        end,
+        cwd = '${workspaceFolder}',
+      },
+      {
+        name = 'Attach to gdbserver :1234',
+        type = 'gdb',
+        request = 'attach',
+        target = 'localhost:1234',
+        program = function()
+          return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+        end,
+        cwd = '${workspaceFolder}',
+      },
+    }
+
     local dapui = require 'dapui'
 
     require('mason-nvim-dap').setup {
       -- Makes a best effort to setup the various debuggers with
       -- reasonable debug configurations
+      automatic_setup = true,
       automatic_installation = true,
 
       -- You can provide additional configuration to the handlers,
@@ -63,7 +104,9 @@ return {
       -- online, please don't ask me how to install them :)
       ensure_installed = {
         -- Update this to ensure that you have the debuggers for the langs you want
+        'arduino',
         'delve',
+        'c++',
       },
     }
 
