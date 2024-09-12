@@ -25,6 +25,7 @@ return {
 
       require('mini.surround').setup()
       require('mini.indentscope').setup()
+      require('mini.starter').setup()
     end,
   },
 
