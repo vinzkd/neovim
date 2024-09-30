@@ -18,13 +18,12 @@
              waku waku!
 ]]
 
--- Set <space> as the leade key
+-- Set <space> as the leader key
 -- See `:help mapleader`
 
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
--- Set to true if you have a Nerd Font installed and selected in the terminal
 vim.g.have_nerd_font = true
 
 -- [[ Setting options ]]
@@ -49,6 +48,7 @@ end)
 
 -- Set tabstop
 vim.opt.tabstop = 4
+vim.opt.shiftwidth = 4
 
 -- Enable break indent
 vim.opt.breakindent = true
@@ -87,6 +87,11 @@ vim.opt.cursorline = true
 -- Minimal number of screen lines to keep above and below the cursor.
 vim.opt.scrolloff = 15
 
+-- Indent Line colors
+vim.cmd.highlight 'IndentLine guifg=#444444'
+-- Current indent line highlight
+vim.cmd.highlight 'IndentLineCurrent guifg=#FFFFFF'
+
 vim.opt.termguicolors = true
 
 -- [[ Basic Keymaps ]]
@@ -107,7 +112,6 @@ vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' }
 
 -- Keybinds to make split navigation easier.
 --  Use CTRL+<hjkl> to switch between windows
---
 --  See `:help wincmd` for a list of all window commands
 vim.keymap.set('n', '<A-h>', '<C-w><C-h>', { desc = 'Move focus to the left window' })
 vim.keymap.set('n', '<A-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
