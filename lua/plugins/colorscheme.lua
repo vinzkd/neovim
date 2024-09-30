@@ -1,6 +1,6 @@
 return {
 
-  { -- Colorscheme
+  { -- NOTE: Colorscheme
     'catppuccin/nvim',
     priority = 1000,
 

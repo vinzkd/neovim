@@ -6,7 +6,7 @@ return {
     end,
   },
 
-  { -- Autoformat
+  { -- NOTE: Autoformat
     'stevearc/conform.nvim',
     event = { 'BufWritePre' },
     cmd = { 'ConformInfo' },
