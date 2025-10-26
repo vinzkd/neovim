@@ -1,6 +1,7 @@
 return {
   {
     'RRethy/vim-illuminate',
+    --NOTE: Automatically highlights other uses of the word under the cursor using either LSP, Tree-sitter, or regex matching.
     opts = {
       delay = 200,
       large_file_cutoff = 2000,

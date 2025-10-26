@@ -1,15 +1,19 @@
 return {
 
-  { 'tpope/vim-sleuth' }, -- Detect tabstop and shiftwidth automatically
+  {
+    'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
+  },
 
   {
     'brenoprata10/nvim-highlight-colors',
     opts = {},
   },
 
-  { -- NOTE: Automatically closes brackets, parenthesis, etc...
+  {
     'windwp/nvim-autopairs',
+    -- NOTE: Automatically closes brackets, parenthesis, etc...
     event = 'InsertEnter',
+    enabled = true,
     config = true,
     opts = {},
   },
@@ -27,11 +31,12 @@ return {
     end,
   },
 
-  { -- NOTE: <------ Makes notes like this colorful
+  {
     'folke/todo-comments.nvim',
+    -- NOTE: <------ Makes notes like this colorful
     dependencies = { 'nvim-lua/plenary.nvim' },
     opts = {
-      signs = false,
+      signs = true,
     },
   },
 }

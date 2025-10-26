@@ -1,7 +1,9 @@
 return {
 
-  { -- NOTE: Colorscheme
+  {
     'catppuccin/nvim',
+    -- NOTE: Colorscheme
+    --
     priority = 1000,
 
     config = function()

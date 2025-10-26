@@ -1,13 +1,17 @@
 return {
   {
     'nvim-pack/nvim-spectre',
+    --NOTE: Search and replace plugin
+    --
     config = function()
       require('spectre').setup()
     end,
   },
 
-  { -- NOTE: Autoformat
+  {
     'stevearc/conform.nvim',
+    -- NOTE: Autoformatting
+    --
     event = { 'BufWritePre' },
     cmd = { 'ConformInfo' },
     keys = {

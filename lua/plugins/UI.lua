@@ -1,6 +1,11 @@
 return {
+  --NOTE: Plugins that enhance UI
+
   {
     'folke/noice.nvim',
+    --NOTE: UI Enhancements for cmd line and notifications
+    --
+    enabled = true,
     event = 'VeryLazy',
     opts = {
       -- add any options here
